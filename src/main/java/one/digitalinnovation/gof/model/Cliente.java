@@ -5,39 +5,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String nome;
-	@ManyToOne
-	private Endereco endereco;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    @NotBlank(message = "O nome não pode estar em branco")
+    private String nome;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @NotNull(message = "O endereço não pode estar em branco")
+    private Endereco endereco;
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
+    // getters e setters omitidos para brevidade
 }
